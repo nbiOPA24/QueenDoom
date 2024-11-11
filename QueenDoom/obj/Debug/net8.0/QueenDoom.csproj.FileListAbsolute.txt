@@ -1,0 +1,15 @@
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\bin\Debug\net8.0\QueenDoom.exe
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\bin\Debug\net8.0\QueenDoom.deps.json
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\bin\Debug\net8.0\QueenDoom.runtimeconfig.json
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\bin\Debug\net8.0\QueenDoom.dll
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\bin\Debug\net8.0\QueenDoom.pdb
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.AssemblyInfoInputs.cache
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.AssemblyInfo.cs
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.csproj.CoreCompileInputs.cache
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.dll
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\refint\QueenDoom.dll
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.pdb
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.genruntimeconfig.cache
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\ref\QueenDoom.dll
+C:\Users\Thumblock\source\repos\QueenDoom\QueenDoom\obj\Debug\net8.0\QueenDoom.sourcelink.json
