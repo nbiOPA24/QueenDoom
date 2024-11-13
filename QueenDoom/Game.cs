@@ -55,13 +55,24 @@ namespace QueenDoom
         Player player;
         Companion companion;
         List<Item> inventory;
+        List<House> map;
+        int currentLocation;
         Random random = new Random();
 
         public void Start()
         {
-            player = new Player("Lilith", 120, 20);
-            companion = new Companion("Friend-companion", 70, 15);
+            player = new Player("Lilith", 100, 20);
+            companion = new Companion("Companion friend", 80, 15);
             inventory = new List<Item>();
+
+            map = new List<House>
+            {
+                new House("Main-House A", "Old barn house with broken windows."),
+                new House("Side-HouseB", "A smaller house connected to houseA"),
+                new House("Side-HouseC", "A smaller house connected to Housea"),
+                new House("BackYard", "Backyard behind the 3 houses")
+            };
+            currentLocation = 0;
 
             Console.WriteLine("Welcome to QueenDoom - A text based adventure");
             Console.WriteLine("You and your companion are on a journey to defeat monsters.");
@@ -69,15 +80,17 @@ namespace QueenDoom
             while (player.IsAlive())
             {
                 Console.WriteLine("\nWhat would you like to do?");
-                Console.WriteLine("1. Explore");
+                Console.WriteLine("1. Explore the area");
                 Console.WriteLine("2. Check Inventory");
-                Console.WriteLine("3. Quit");
+                Console.WriteLine("3. Move to another location");
+                Console.WriteLine("4. Quit");
                 Console.Write("> ");
                 string choice = Console.ReadLine();
 
                 if (choice == "1") Explore();
                 else if (choice == "2") ShowInventory();
-                else if (choice == "3") break;
+                else if (choice == "3") Move();
+                else if (choice == "4") break;
                 else Console.WriteLine("Invalid choice. Try again.");
             }
 
@@ -86,16 +99,17 @@ namespace QueenDoom
 
         private void Explore()
         {
-            Console.WriteLine("\nTime to become an adventurer");
+            Console.WriteLine($"\nExploring the {map[currentLocation].Name}: {map[currentLocation].Description}");
 
-            if (random.Next(2) == 0)
+            int encounterChance = random.Next(3);
+            if (encounterChance == 0)
             {
                 Enemy enemy = GenerateEnemy();
-                Console.WriteLine($"An Aggresive {enemy.Name} showed his face");
+                Console.WriteLine($"A wild {enemy.Name} appears!");
 
                 if (HasEffectiveItem(enemy))
                 {
-                    Console.WriteLine($"You use an item effective against the {enemy.Name}, instantly defeating it!");
+                    Console.WriteLine($"You use an effective item against {enemy.Name}, instantly defeating it!");
                     RecruitCompanion(enemy);
                 }
                 else
@@ -103,9 +117,13 @@ namespace QueenDoom
                     Fight(enemy);
                 }
             }
-            else
+            else if (encounterChance == 1)
             {
                 FindItem();
+            }
+            else
+            {
+                Console.WriteLine("You found nothing of interest here.");
             }
         }
 
@@ -127,9 +145,9 @@ namespace QueenDoom
                         if (player.IsAlive()) enemy.Attack(companion);
                     }
                 }
-                else if (action == "Run away")
+                else if (action == "flee")
                 {
-                    Console.WriteLine("You ran to live another day");
+                    Console.WriteLine("You flee from the battle!");
                     return;
                 }
             }
@@ -150,14 +168,14 @@ namespace QueenDoom
         private bool HasEffectiveItem(Character monster)
         {
             foreach (Item item in inventory)
-                if (item.IsEffectiveAgainst(monster)) return true;
+                if (!item.IsHealing && item.Name.Contains(monster.Name)) return true;
 
             return false;
         }
 
         private void FindItem()
         {
-            Item newItem = GenerateItem();
+            Item newItem = Item.GetPredefinedItems()[random.Next(Item.GetPredefinedItems().Count)];
             Console.WriteLine($"You found a {newItem.Name}!");
             inventory.Add(newItem);
         }
@@ -166,19 +184,32 @@ namespace QueenDoom
         {
             Console.WriteLine("\nInventory:");
             if (inventory.Count == 0) Console.WriteLine("Your inventory is empty.");
-            else inventory.ForEach(item => Console.WriteLine($"- {item.Name}"));
+            else foreach (var item in inventory) Console.WriteLine($"- {item.Name}");
+        }
+
+        private void Move()
+        {
+            Console.WriteLine("\nChoose a new location to explore:");
+            for (int i = 0; i < map.Count; i++)
+            {
+                Console.WriteLine($"{i}. {map[i].Name}");
+            }
+            Console.Write("> ");
+            if (int.TryParse(Console.ReadLine(), out int location) && location >= 0 && location < map.Count)
+            {
+                currentLocation = location;
+                Console.WriteLine($"You move to {map[currentLocation].Name}.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid location.");
+            }
         }
 
         private Enemy GenerateEnemy()
         {
-            string[] enemyNames = { "Ring Wrath", "Werewolf", "Bat(vampire)" };
+            string[] enemyNames = { "Ring-Wrath", "Werewolf", "Vampire-bat" };
             return new Enemy(enemyNames[random.Next(enemyNames.Length)], random.Next(30, 70), random.Next(10, 20));
-        }
-
-        private Item GenerateItem()
-        {
-            string[] itemNames = {"The one ring", "Wooden Stake", "Silver Bullet", "Healing Potion" };
-            return new Item(itemNames[random.Next(itemNames.Length)]);
         }
     }
 }

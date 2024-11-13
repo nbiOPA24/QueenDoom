@@ -10,6 +10,9 @@ namespace QueenDoom
     {
         public Enemy(string name, int health, int damage) : base(name, health, damage) { }
 
-        public Companion RecruitAsCompanion() => new Companion(Name, Health, Damage);
+        public Companion RecruitAsCompanion()
+        {
+            return new Companion(Name, Health, Damage);
+        }
     }
 }

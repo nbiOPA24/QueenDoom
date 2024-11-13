@@ -95,7 +95,6 @@ namespace QueenDoom
         {
             Game game = new Game();
             game.Start();
-
         }
-    }     
+    }
 }
