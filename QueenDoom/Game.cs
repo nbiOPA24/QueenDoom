@@ -177,7 +177,7 @@ namespace QueenDoom
 
         private Item GenerateItem()
         {
-            string[] itemNames = {"The one ring", "Silver Cross", "Silver Bullet", "Healing Potion" };
+            string[] itemNames = {"The one ring", "Wooden Stake", "Silver Bullet", "Healing Potion" };
             return new Item(itemNames[random.Next(itemNames.Length)]);
         }
     }

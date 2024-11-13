@@ -17,7 +17,7 @@ namespace QueenDoom
 
         public bool IsEffectiveAgainst(Character monster)
         {
-            return (Name == "Silver Cross" && monster.Name == "Bat(Vampire)") ||
+            return (Name == "Wooden Stake" && monster.Name == "Bat(Vampire)") ||
                    (Name == "Silver Bullet" && monster.Name == "Werewolf");
         }
     }
