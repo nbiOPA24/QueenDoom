@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QueenDoom
 {
-    public class testgithub
+    public class Testgithub
     {
     }
 }
