@@ -56,6 +56,7 @@ namespace QueenDoom
         private Companion companion;
         private List<Item> inventory;
         private List<House> map;
+        private List<>
         private int currentLocation;
         private Random random = new Random();
 
@@ -98,18 +99,20 @@ namespace QueenDoom
                 {
                     Console.WriteLine("\nWhat would you like to do?");
                     Console.WriteLine("1. Explore the area");
-                    Console.WriteLine("2. Check Inventory");
-                    Console.WriteLine("3. Move to another location");
-                    Console.WriteLine("4. Quit");
+                    Console.WriteLine("2. Move to another location");
+                    Console.WriteLine("3. Check Inventory");
+                    Console.WriteLine("4. Magic Spell ");
+                    Console.WriteLine("5. Quit");
                     Console.Write("> ");
                     //Null warning fix, had to learn how to write the fix. 
                     //string choice = Console.ReadLine();  
                     string choice = Console.ReadLine() ?? string.Empty;
 
                     if (choice == "1") Explore();
-                    else if (choice == "2") ShowInventory();
-                    else if (choice == "3") Move();
-                    else if (choice == "4") break;
+                    else if (choice == "2") Move();
+                    else if (choice == "3") ShowInventory();
+                    else if (choice == "4") ListOfMagic();
+                    else if (choice == "5") break;
                     else Console.WriteLine("Invalid choice. Try again.");
                 }
 
