@@ -8,6 +8,30 @@ namespace QueenDoom
 {
     public class Player : Character
     {
-        public Player(string name, int health, int damage) : base(name, health, damage) { }
+        public int Mana { get; set; }
+
+
+        public Player(string name, int health, int damage, int mana) : base(name, health, damage) 
+        {
+            Mana = mana;
+        }
+
+        public void UseMana(int manaCost)
+        {
+            if (Mana >= manaCost)
+            {
+                Mana -= manaCost;
+            }
+            else
+            {
+                Console.WriteLine("Not enough mana for this spell.");
+            }
+        }
+
+        public void Heal(int amount)
+        {
+            Health += amount;
+            Console.WriteLine($"{Name} healed by {amount} points!");
+        }
     }
 }

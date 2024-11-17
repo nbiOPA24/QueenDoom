@@ -8,8 +8,8 @@ namespace QueenDoom
 {
     public class House
     {
-        public string Name { get; }
-        public string Description { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         public House(string name, string description)
         {
@@ -17,23 +17,4 @@ namespace QueenDoom
             Description = description;
         }
     }
-    //public class House
-    //{
-    //    public string Name { get; }
-    //    public string Description { get; }
-    //    public int North { get; }
-    //    public int South { get; }
-    //    public int East { get; }
-    //    public int West { get; }
-
-    //    public House(string name, string description, int north, int south, int east, int west)
-    //    {
-    //        Name = name;
-    //        Description = description;
-    //        North = north;
-    //        South = south;
-    //        East = east;
-    //        West = west;
-    //    }
-    //}
 }

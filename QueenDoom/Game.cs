@@ -1,46 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Numerics;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace QueenDoom
-//{
-//    public class Game
-//    {
-//        Player player;
-//        Companion companion;
-//        List<Item> inventory;
-//        Random random = new Random();
-
-//            public void Start()
-//            {
-//                player = new Player("Lilith", 100, 20);
-//                companion = new Companion("Helper-Companion", 80, 15);
-//                inventory = new List<Item>();
-//                Console.WriteLine("Welcome to QueenDoom, A text adventure Game");
-//                Console.WriteLine("You will have to fight monsters and solve clues and puzzles");
-//                Console.WriteLine("Some enemies will see the light and turn to your side, as part of a companion");
-
-//                while (player.IsAlive())
-//                {
-//                    Console.WriteLine("What would you like to do?");
-//                    Console.WriteLine("1. Explore");
-//                    Console.WriteLine("2. Check Inventory");
-//                    Console.WriteLine("3. Quit");
-//                    Console.Write("> ");
-//                    string choice = Console.ReadLine();
-
-//                    if (choice == "1") Explore();
-//                    else if (choice == "2") ShowInventory();
-//                    else if (choice == "3") break;
-//                    else Console.WriteLine("Invalid choice. Try again.");
-//                }
-//            }
-//        }
-//    }
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,31 +14,29 @@ namespace QueenDoom
         private Companion companion;
         private List<Item> inventory;
         private List<House> map;
-        private List<>
+        private List<MagicSpell> spells;
+        private Spellbook spellbook;
         private int currentLocation;
         private Random random = new Random();
-
-        //Player player;
-        //Companion companion;
-        //List<Item> inventory;
-        //List<House> map;
-        //int currentLocation;
-        //Random random = new Random();
 
         public Game()
         {
             // Initialize fields with default values
-            player = new Player("Default Player", 100, 10);
-            companion = new Companion("Default Companion", 80, 5);
+            player = new Player("Default Player", 100, 20, 50);
+            companion = new Companion("Default Companion", 80, 15);
             inventory = new List<Item>();
             map = new List<House>();
             currentLocation = 0;
         }
 
         public void Start()
-            {
-            player = new Player("Lilith", 100, 20);
+        {
+            player = new Player("Lilith", 100, 20, 50);
             companion = new Companion("Companion friend", 80, 15);
+            spells = MagicSpell.GetPredefinedSpells();
+            spellbook = new Spellbook(player, spells);
+            
+
 
             map = new List<House>
                 {
@@ -111,13 +67,13 @@ namespace QueenDoom
                     if (choice == "1") Explore();
                     else if (choice == "2") Move();
                     else if (choice == "3") ShowInventory();
-                    else if (choice == "4") ListOfMagic();
+                    else if (choice == "4") spellbook.Show();
                     else if (choice == "5") break;
                     else Console.WriteLine("Invalid choice. Try again.");
                 }
 
                 if (!player.IsAlive()) Console.WriteLine("You have been defeated. Game Over.");
-            }
+        }
 
             private void Explore()
             {
