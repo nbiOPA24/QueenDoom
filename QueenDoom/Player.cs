@@ -10,28 +10,39 @@ namespace QueenDoom
     {
         public int Mana { get; set; }
 
-
-        public Player(string name, int health, int damage, int mana) : base(name, health, damage) 
+        public Player(string name, int health, int damage, int mana) : base(name, health, damage)
         {
             Mana = mana;
         }
 
-        public void UseMana(int manaCost)
+        public bool UseMana(int manaCost)
         {
             if (Mana >= manaCost)
             {
                 Mana -= manaCost;
+                return true;
             }
             else
             {
-                Console.WriteLine("Not enough mana for this spell.");
+                Console.WriteLine("Not enough mana!");
+                return false;
             }
         }
 
-        public void Heal(int amount)
+        public void CastSpell(MagicSpell spell, Character target = null)
         {
-            Health += amount;
-            Console.WriteLine($"{Name} healed by {amount} points!");
+            if (!UseMana(spell.ManaCost)) return;
+
+            if (spell.IsHealing)
+            {
+                Health += spell.Damage;
+                Console.WriteLine($"{Name} casts {spell.Name} and restores {spell.Damage} health!");
+            }
+            else if (target != null)
+            {
+                target.Health -= spell.Damage;
+                Console.WriteLine($"{Name} casts {spell.Name}, dealing {spell.Damage} damage to {target.Name}!");
+            }
         }
     }
 }

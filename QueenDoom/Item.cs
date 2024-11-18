@@ -27,5 +27,36 @@ namespace QueenDoom
                 new Item("Healing Potion", true)
             };
         }
+
+        public static Item FindItem(Random random)
+        {
+            var items = GetPredefinedItems();
+            return items[random.Next(items.Count)];
+        }
+
+        public static bool HasEffectiveItem(List<Item> inventory, Character enemy)
+        {
+            foreach (Item item in inventory)
+                if (!item.IsHealing && item.Name.Contains(enemy.Name))
+                    return true;
+
+            return false;
+        }
+
+        public static void ShowInventory(List<Item> inventory)
+        {
+            Console.WriteLine("\nInventory:");
+            if (inventory.Count == 0)
+            {
+                Console.WriteLine("Your inventory is empty.");
+            }
+            else
+            {
+                foreach (var item in inventory)
+                {
+                    Console.WriteLine($"- {item.Name}");
+                }
+            }
+        }
     }
 }

@@ -10,11 +10,6 @@ namespace QueenDoom
     {
         public Enemy(string name, int health, int damage) : base(name, health, damage) { }
 
-        public Companion RecruitAsCompanion()
-        {
-            return new Companion(Name, Health, Damage);
-        }
-
         public static List<Enemy> GetPredefinedEnemies()
         {
             return new List<Enemy>
@@ -25,18 +20,6 @@ namespace QueenDoom
                 new Enemy("Cyclops", 60, 8),
                 new Enemy("Orc", 60, 18)
             };
-        }
-        
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
-            if (Health < 0) 
-                Health = 0; //Hp kan inte bli negativt
-        }
-
-        public bool IsAlive()
-        {
-            return Health > 0;
         }
     }
 }

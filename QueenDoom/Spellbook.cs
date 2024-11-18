@@ -27,7 +27,7 @@ namespace QueenDoom
             Console.WriteLine("?\nSpells of Choice");
             for (int i = 0; i < spells.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {spells[i].Name} (Power: {spells[i].Power}, Mana: {spells[i].Mana})");
+                Console.WriteLine($"{i + 1}. {spells[i].Name} (Damage: {spells[i].Damage}, Mana: {spells[i].ManaCost})");
             }
 
             Console.Write("> ");
