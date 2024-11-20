@@ -18,6 +18,12 @@ namespace QueenDoom
             Health = health;
             Damage = damage;
         }
+        public virtual void TakeDamage(int damage)
+        {
+            Health -= damage;
+            if (Health < 0) Health = 0;
+            Console.WriteLine($"{Name} takes {Damage} damage");
+        }
 
         public void Attack(Character target)
         {

@@ -36,14 +36,16 @@ namespace QueenDoom
                 Console.WriteLine("1. Explore the area");
                 Console.WriteLine("2. Move to another location");
                 Console.WriteLine("3. Check Inventory");
-                Console.WriteLine("4. Quit");
+                Console.WriteLine("4. Rest");
+                Console.WriteLine("5. Quit");
                 Console.Write("> ");
                 string choice = Console.ReadLine() ?? string.Empty;
 
                 if (choice == "1") Explore();
                 else if (choice == "2") Move();
                 else if (choice == "3") Item.ShowInventory(inventory);
-                else if (choice == "4") break;
+                else if (choice == "4") player.Rest();
+                else if (choice == "5") break;
                 else Console.WriteLine("Invalid choice. Try again.");
             }
 
@@ -87,7 +89,7 @@ namespace QueenDoom
             while (enemy.IsAlive() && player.IsAlive())
             {
                 Console.WriteLine($"\n{player.Name} HP: {player.Health} | Mana: {player.Mana} | {companion.Name} HP: {companion.Health} | {enemy.Name} HP: {enemy.Health}");
-                Console.WriteLine("Choose an action: (attack / spell / flee) > ");
+                Console.WriteLine("Choose an action: (attack / spell / defend / flee) > ");
                 string action = Console.ReadLine()?.ToLower() ?? string.Empty;
 
                 if (action == "attack")
@@ -110,6 +112,16 @@ namespace QueenDoom
                     else if (spellChoice == "2") player.CastSpell(MagicSpell.FireBreath, enemy);
                     else if (spellChoice == "3") player.CastSpell(MagicSpell.Heal);
                     else Console.WriteLine("Invalid spell choice!");
+
+                    if (enemy.IsAlive())
+                    {
+                        enemy.Attack(player);
+                        if (player.IsAlive()) enemy.Attack(companion);
+                    }
+                }
+                else if (action == "defend")
+                {
+                    player.Defend();
 
                     if (enemy.IsAlive())
                     {
