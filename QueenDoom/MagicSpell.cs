@@ -22,7 +22,7 @@ namespace QueenDoom
             IsHealing = isHealing;
         }
 
-        public static MagicSpell IceSpear => new MagicSpell("Ice Spear", 10, 30);
+        public static MagicSpell IceSpear => new MagicSpell("Ice super Spear", 20, 50);
         public static MagicSpell FireBreath => new MagicSpell("Fire Breath", 15, 50);
         public static MagicSpell Heal => new MagicSpell("Heal", 20, 30, true);
 

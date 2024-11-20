@@ -10,7 +10,13 @@ namespace QueenDoom
     {
         public Enemy(string name, int health, int damage) : base(name, health, damage) { }
 
-        public static List<Enemy> GetPredefinedEnemies()
+        public void Attack(Player player)
+        {
+            Console.WriteLine($"{Name} attacks {player.Name}!");
+            player.TakeDamage(Damage);
+        }
+
+            public static List<Enemy> GetPredefinedEnemies()
         {
             return new List<Enemy>
             {

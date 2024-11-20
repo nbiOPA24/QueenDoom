@@ -29,6 +29,25 @@ namespace QueenDoom
                 return false;
             }
         }
+        public void Defend()
+        {
+            isDefending = true;
+            Console.WriteLine($"{Name} Defensive stance, reduce enemy damage by 50 %");
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            if (isDefending)
+            {
+                Damage /= 2;
+                Console.WriteLine($"{Name} defends, damage reduced {Damage}!");
+            }
+
+            Health -= damage;
+            if (Health < 0) Health = 0;
+
+            isDefending = false;
+        }
 
         public void Rest()
         {
@@ -58,17 +77,6 @@ namespace QueenDoom
                 target.Health -= spell.Damage;
                 Console.WriteLine($"{Name} casts {spell.Name}, dealing {spell.Damage} damage to {target.Name}!");
             }
-        }
-
-        public void Defend()
-        {
-            if (isDefending)
-            {
-                Damage /= 2;
-                Console.WriteLine($"{Name} defends, damage reduced {Damage}!");
-            }
-
-            isDefending = false;
         }
     }
 }

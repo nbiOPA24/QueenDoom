@@ -125,6 +125,7 @@ namespace QueenDoom
 
                     if (enemy.IsAlive())
                     {
+                        
                         enemy.Attack(player);
                         if (player.IsAlive()) enemy.Attack(companion);
                     }
