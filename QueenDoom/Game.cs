@@ -14,6 +14,7 @@ namespace QueenDoom
         private Companion companion;
         private List<Item> inventory;
         private List<House> map;
+        private List<Quest> startedQuests;
         private int currentLocation;
         private Random random = new Random();
 
@@ -24,6 +25,10 @@ namespace QueenDoom
             inventory = new List<Item>();
             map = House.GetPredefinedMap();
             currentLocation = 0;
+            startedQuests = new List<Quest>
+            {
+                new Quest("Defeat Cyclops","While exploring", "Defeat Cyclops", "20 Health")
+            };
         }
 
         public void Start()
@@ -37,7 +42,8 @@ namespace QueenDoom
                 Console.WriteLine("2. Move to another location");
                 Console.WriteLine("3. Check Inventory");
                 Console.WriteLine("4. Rest");
-                Console.WriteLine("5. Quit");
+                Console.WriteLine("5. Quest-Log");
+                Console.WriteLine("6. Quit");
                 Console.Write("> ");
                 string choice = Console.ReadLine() ?? string.Empty;
 
@@ -45,11 +51,27 @@ namespace QueenDoom
                 else if (choice == "2") Move();
                 else if (choice == "3") Item.ShowInventory(inventory);
                 else if (choice == "4") player.Rest();
-                else if (choice == "5") break;
+                else if (choice == "5") ShowQuests();
+                else if (choice == "6") break;
                 else Console.WriteLine("Invalid choice. Try again.");
             }
 
             if (!player.IsAlive()) Console.WriteLine("You have been defeated. Game Over.");
+        }
+        private void ShowQuests()
+        {
+            Console.WriteLine("\nStarted Quests:");
+            foreach (var quest in startedQuests)
+            {
+                if(!quest.IsCompleted)
+                {
+                    Console.WriteLine($"{quest.Name} {quest.Description} (EndGoal:{quest.EndGoal})");
+                }
+                else
+                {
+                    Console.WriteLine($"{quest.Name}: Completed");
+                }
+            }
         }
 
         private void Explore()
@@ -143,6 +165,11 @@ namespace QueenDoom
 
             if (!enemy.IsAlive())
             {
+                Console.WriteLine($"You defeated the {enemy.Name}");
+                foreach (var quest in startedQuests)
+                {
+                    quest.QuestDoneOrNot(player, enemy, inventory);
+                }
                 companion = Companion.RecruitCompanion(enemy);
             }
         }

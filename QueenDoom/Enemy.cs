@@ -12,8 +12,10 @@ namespace QueenDoom
 
         public void Attack(Player player)
         {
-            Console.WriteLine($"{Name} attacks {player.Name}!");
-            player.TakeDamage(Damage);
+            bool isCrit = IsCriticalhit();
+            int damageDealt = isCrit ? Damage * 2 : Damage;
+            Console.WriteLine($"{Name} Attacks {player.Name} for  {damageDealt} damage.");
+            player.TakeDamage(damageDealt, isCrit);
         }
 
             public static List<Enemy> GetPredefinedEnemies()

@@ -35,11 +35,11 @@ namespace QueenDoom
             Console.WriteLine($"{Name} Defensive stance, reduce enemy damage by 50 %");
         }
 
-        public override void TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
             if (isDefending)
             {
-                Damage /= 2;
+                damage /= 2;
                 Console.WriteLine($"{Name} defends, damage reduced {Damage}!");
             }
 
